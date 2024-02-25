@@ -8,7 +8,6 @@ This repo deploys a web server into default VPC.
 - An AWS account 
 - AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - An AWS access key and secret key.
-- Create a [key pair on aws](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html) named `mywebserver-key`
 
 This guide provides a detailed overview of deploying a basic AWS infrastructure using Terraform. The Terraform code snippet you've shared sets up a default VPC, a subnet, a security group for EC2, and launches an EC2 instance within AWS. 
 
@@ -28,7 +27,7 @@ The code consists of several parts:
 
 - `Default Subnet Creation`: Ensures a default subnet exists in one of the available availability zones.
 
-- `Security Group Configuration`: Sets up a security group for an EC2 instance to allow HTTP (port 80) and SSH (port 22) access.
+- `Security Group Configuration`: Sets up a security group for an EC2 instance to allow HTTP (port 80) and ICMP (ping) access.
 
 - `AMI Data Source`: Fetches the latest Amazon Linux 2 AMI for the EC2 instance.
 
@@ -63,6 +62,8 @@ terraform apply
 >NOTE: You'll be prompted to confirm the action. Type yes to proceed.
 
 4. Access the Resources: Once the deployment is successful, open a browser and navigate to the web server ip address that Terraform has provided.
+
+>NOTE: You can also open a terminal to verify that pings to the ip address the web server are successful. 
 
 **How to Destroy**
 

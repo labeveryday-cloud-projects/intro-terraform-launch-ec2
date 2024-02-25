@@ -48,10 +48,10 @@ resource "aws_security_group" "ec2_security_group" {
   }
 
   ingress {
-    description = "ssh access"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    description = "ping access"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -89,7 +89,6 @@ resource "aws_instance" "ec2_instance" {
   instance_type          = "t2.micro"
   subnet_id              = aws_default_subnet.default_az1.id
   vpc_security_group_ids = [aws_security_group.ec2_security_group.id]
-  key_name               = "mywebserver-key"
   user_data              = file("install_web_app.sh")
 
   tags = {
